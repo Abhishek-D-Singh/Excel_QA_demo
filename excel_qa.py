@@ -50,7 +50,7 @@ uploaded_file = st.sidebar.file_uploader("upload", type="xlsx")
 if uploaded_file :
 # Read the XLS file using pandas and openpyxl as the engine
     data = pd.read_excel(uploaded_file, engine='openpyxl')
-    data.to_csv(output_csv, index=False)
+    data.to_csv(uploaded_file, index=False)
 
 # Save the data as a CSV file
 
@@ -63,7 +63,7 @@ from langchain.llms import OpenAI
 """Calling langchain csv agent to pass the csv file for QA"""
 
 agent = create_csv_agent(OpenAI(temperature=0), 
-                         'output_csv', 
+                         'uploaded_file', 
                          verbose=True)
 
 agent.run("how many rows are there?")
