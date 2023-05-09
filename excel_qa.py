@@ -45,11 +45,11 @@ if uploaded_file :
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
         tmp_file.write(uploaded_file.getvalue())
         tmp_file_path = tmp_file.name
-xls_file = r'/content/Sample_Excel.xlsx'
-output_csv = r'/content/Sample_Excel.csv'
+#xls_file = r'/content/Sample_Excel.xlsx'
+#output_csv = r'/content/Sample_Excel.csv'
 
 # Read the XLS file using pandas and openpyxl as the engine
-data = pd.read_excel(xls_file, engine='openpyxl')
+data = pd.read_excel(file_path=tmp_file_path, engine='openpyxl')
 
 # Save the data as a CSV file
 data.to_csv(output_csv, index=False)
