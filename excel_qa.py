@@ -13,20 +13,27 @@ Installation of libraries[langchain,openai,openpyxl]
 
 #!pip install openpyxl
 
-"""Importing required libraries[OS for storing API KEY and Pandas for reading excel file]"""
-
+#"""Importing required libraries[OS for storing API KEY and Pandas for reading excel file]"""
+import streamlit as st
+from streamlit_chat import message
+from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain.chat_models import ChatOpenAI
+from langchain.chains import ConversationalRetrievalChain
+from langchain.document_loaders.csv_loader import CSVLoader
+from langchain.vectorstores import FAISS
+import tempfile
 import os
 
 #os.environ["OPENAI_API_KEY"] = "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"
 
 import pandas as pd
 
-"""Using files functionality from collab to read file locally in variable xls file"""
+#"""Using files functionality from collab to read file locally in variable xls file"""
 
 #from google.colab import files
 #uploaded = files.upload()
 
-"""Converting the file to csv format to parse through pandas library"""
+#"""Converting the file to csv format to parse through pandas library"""
 user_api_key = st.sidebar.text_input(
     label="#### Your OpenAI API key 👇",
     placeholder="Paste your openAI API key, sk-",
