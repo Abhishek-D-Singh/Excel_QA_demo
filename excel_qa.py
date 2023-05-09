@@ -46,7 +46,7 @@ if uploaded_file :
         tmp_file.write(uploaded_file.getvalue())
         tmp_file_path = tmp_file.name
 #xls_file = r'/content/Sample_Excel.xlsx'
-#output_csv = r'/content/Sample_Excel.csv'
+output_csv = 'Sample_Excel.csv'
 
 # Read the XLS file using pandas and openpyxl as the engine
 data = pd.read_excel(tmp_file_path, engine='openpyxl')
