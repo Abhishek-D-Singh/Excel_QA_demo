@@ -47,9 +47,9 @@ uploaded_file = st.sidebar.file_uploader("upload", type="xlsx")
    #     tmp_file_path = tmp_file.name
 #xls_file = r'/content/Sample_Excel.xlsx'
 #output_csv = 'Sample_Excel.csv'
-
+if uploaded_file :
 # Read the XLS file using pandas and openpyxl as the engine
-data = pd.read_excel(tmp_file_path, engine='openpyxl')
+    data = pd.read_excel(uploaded_file, engine='openpyxl')
 
 # Save the data as a CSV file
 data.to_csv(output_csv, index=False)
