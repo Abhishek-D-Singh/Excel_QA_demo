@@ -9,25 +9,35 @@ Original file is located at
 Installation of libraries[langchain,openai,openpyxl]
 """
 
-!pip -q install langchain openai
+#!pip -q install langchain openai
 
-!pip install openpyxl
+#!pip install openpyxl
 
 """Importing required libraries[OS for storing API KEY and Pandas for reading excel file]"""
 
 import os
 
-os.environ["OPENAI_API_KEY"] = "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"
+#os.environ["OPENAI_API_KEY"] = "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"
 
 import pandas as pd
 
 """Using files functionality from collab to read file locally in variable xls file"""
 
-from google.colab import files
-uploaded = files.upload()
+#from google.colab import files
+#uploaded = files.upload()
 
 """Converting the file to csv format to parse through pandas library"""
+user_api_key = st.sidebar.text_input(
+    label="#### Your OpenAI API key 👇",
+    placeholder="Paste your openAI API key, sk-",
+    type="password")
 
+uploaded_file = st.sidebar.file_uploader("upload", type="xlsx")
+
+if uploaded_file :
+    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+        tmp_file.write(uploaded_file.getvalue())
+        tmp_file_path = tmp_file.name
 xls_file = r'/content/Sample_Excel.xlsx'
 output_csv = r'/content/Sample_Excel.csv'
 
@@ -47,8 +57,6 @@ from langchain.llms import OpenAI
 agent = create_csv_agent(OpenAI(temperature=0), 
                          '/content/Sample_Excel.csv', 
                          verbose=True)
-
-"""Triggering the agent through passing query in the run method."""
 
 agent.run("how many rows are there?")
 
