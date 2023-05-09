@@ -41,15 +41,15 @@ user_api_key = st.sidebar.text_input(
 
 uploaded_file = st.sidebar.file_uploader("upload", type="xlsx")
 
-if uploaded_file :
-    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
-        tmp_file.write(uploaded_file.getvalue())
-        tmp_file_path = tmp_file.name
+#if uploaded_file :
+ #   with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+  #      tmp_file.write(uploaded_file.getvalue())
+   #     tmp_file_path = tmp_file.name
 #xls_file = r'/content/Sample_Excel.xlsx'
-output_csv = 'Sample_Excel.csv'
+#output_csv = 'Sample_Excel.csv'
 
 # Read the XLS file using pandas and openpyxl as the engine
-data = pd.read_excel(tmp_file_path, engine='openpyxl')
+data = pd.read_excel(tmp_file, engine='openpyxl')
 
 # Save the data as a CSV file
 data.to_csv(output_csv, index=False)
@@ -62,7 +62,7 @@ from langchain.llms import OpenAI
 """Calling langchain csv agent to pass the csv file for QA"""
 
 agent = create_csv_agent(OpenAI(temperature=0), 
-                         '/content/Sample_Excel.csv', 
+                         'output_csv', 
                          verbose=True)
 
 agent.run("how many rows are there?")
