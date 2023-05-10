@@ -50,7 +50,7 @@ uploaded_file = st.sidebar.file_uploader("upload", type="xlsx")
 if uploaded_file :
 # Read the XLS file using pandas and openpyxl as the engine
     data = pd.read_excel(uploaded_file, engine='openpyxl')
-    data.to_csv(uploaded_file, index=False)
+    data.to_csv(index=False)
 
 # Save the data as a CSV file
 
