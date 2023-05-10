@@ -40,17 +40,10 @@ user_api_key = st.sidebar.text_input(
     type="password")
 
 uploaded_file = st.sidebar.file_uploader("upload", type="xlsx")
-
-#if uploaded_file :
- #   with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
-  #      tmp_file.write(uploaded_file.getvalue())
-   #     tmp_file_path = tmp_file.name
-#xls_file = r'/content/Sample_Excel.xlsx'
-#output_csv = 'Sample_Excel.csv'
-if uploaded_file :
+if uploaded_file is not None :
 # Read the XLS file using pandas and openpyxl as the engine
-    data = pd.read_excel(uploaded_file, engine='openpyxl')
-    data.to_csv(index=False)
+    data_df = pd.read_excel(uploaded_file, engine='openpyxl')
+    data_df.to_csv(index=False)
 
 # Save the data as a CSV file
 
@@ -71,3 +64,9 @@ agent.run("how many rows are there?")
 agent.run("What are the column names?")
 
 agent.run("For the Campaign C631079 and INTERNAL ORDER 901829794, what is DME FSItem SAP ?")
+#if uploaded_file :
+ #   with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+  #      tmp_file.write(uploaded_file.getvalue())
+   #     tmp_file_path = tmp_file.name
+#xls_file = r'/content/Sample_Excel.xlsx'
+#output_csv = 'Sample_Excel.csv'
