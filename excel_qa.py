@@ -15,6 +15,8 @@ Installation of libraries[langchain,openai,openpyxl]
 
 #"""Importing required libraries[OS for storing API KEY and Pandas for reading excel file]"""
 import streamlit as st
+import langchain 
+langchain.verbose = False
 from streamlit_chat import message
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
