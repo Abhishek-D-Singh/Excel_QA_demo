@@ -59,7 +59,7 @@ from langchain.llms import OpenAI
 
 """Calling langchain csv agent to pass the csv file for QA"""
 
-agent = create_csv_agent(OpenAI(temperature=0),'csv_file.csv')
+agent = create_csv_agent(OpenAI(temperature=0),'csv_file')
 
 agent.run("how many rows are there?")
 
