@@ -45,6 +45,7 @@ uploaded_file = st.sidebar.file_uploader("upload", type="xlsx")
 if uploaded_file is not None :
 # Read the XLS file using pandas and openpyxl as the engine
     data_df = pd.read_excel(uploaded_file, engine='openpyxl')
+    filename = uploaded_file.name
     data_df.to_csv("Test.csv",index=False,header = True)
     #buffer = io.StringIO(csv_file)
     #csv =  pd.read_csv(filepath_or_buffer = buffer, header = 1)
@@ -60,7 +61,7 @@ from langchain.llms import OpenAI
 
 """Calling langchain csv agent to pass the csv file for QA"""
 
-agent = create_csv_agent(OpenAI(temperature=0),'Test.csv',verbose = True)
+agent = create_csv_agent(OpenAI(temperature=0),'filename',verbose = True)
 
 agent.run("how many rows are there?")
 
